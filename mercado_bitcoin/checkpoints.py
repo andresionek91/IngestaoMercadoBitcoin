@@ -18,7 +18,9 @@ class CheckpointModel(Model):
 
 
 class DynamoCheckpoints:
-    def __init__(self, model: CheckpointModel, report_id: str, default_start_date: datetime.date):
+    def __init__(
+        self, model: CheckpointModel, report_id: str, default_start_date: datetime.date
+    ):
         self.default_start_date = default_start_date
         self.model = model
         self.report_id = report_id
@@ -59,5 +61,7 @@ class DynamoCheckpoints:
             logger.info(f"Checkpoint found for {self.report_id}: {checkpoint}")
             return datetime.datetime.strptime(checkpoint, "%Y-%m-%d").date()
         else:
-            logger.info(f"Checkpoint not found for {self.report_id} using default_start_date")
+            logger.info(
+                f"Checkpoint not found for {self.report_id} using default_start_date"
+            )
             return self.default_start_date
