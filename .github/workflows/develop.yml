@@ -21,7 +21,7 @@ jobs:
         run: make ci-setup
 
       - name: run tests
-        run: make ci-tests
+        run: make ci-test
 
   deploy:
     runs-on: ubuntu-latest
