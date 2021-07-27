@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 import logging
 import ratelimit
 import requests
-from backoff import on_exception, expo, constant
+from backoff import on_exception, expo
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -41,7 +41,7 @@ class TradesApi(MercadoBitcoinApi):
     type = "trades"
 
     def _get_unix_epoch(self, date: datetime.datetime) -> int:
-        return int(date.timestamp())
+        return int((date - datetime.datetime(1970, 1, 1)).total_seconds())
 
     def _get_endpoint(
         self, date_from: datetime.datetime = None, date_to: datetime.datetime = None
